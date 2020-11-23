@@ -7,7 +7,7 @@
   <div class=" container-fluid d-flex align-items-center">
     <div class=" row">
       <div class=" col-lg-7 col-md-10">
-        <h1 class=" display-2 text-white">Hello Jesse</h1>
+        <h1 *ngIf="auth.userProfile$ | async as profile" class="display-2 text-white">Hello, {{ profile.name}}</h1>
 
         <p class=" text-white mt-0 mb-5">
           This is your profile page. You can see the progress you've made with
@@ -34,10 +34,7 @@
           <div class=" col-lg-3 order-lg-2">
             <div class=" card-profile-image">
               <a href="javascript:void(0)">
-                <img
-                  class=" rounded-circle"
-                  src="assets/img/theme/team-4.jpg"
-                />
+                <img class=" rounded-circle" *ngIf="auth.userProfile$ | async as profile" alt="Image placeholder" src="{{ profile.picture}}">
               </a>
             </div>
           </div>

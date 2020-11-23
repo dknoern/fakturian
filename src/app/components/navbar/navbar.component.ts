@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef } from "@angular/core";
 import { ROUTES } from "../sidebar/sidebar.component";
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 import {
   Location,
@@ -19,6 +20,7 @@ export class NavbarComponent implements OnInit {
   public location: Location;
   sidenavOpen: boolean = true;
   constructor(
+    public auth: AuthService,
     location: Location,
     private element: ElementRef,
     private router: Router
