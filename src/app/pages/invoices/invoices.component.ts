@@ -1,0 +1,510 @@
+import { Component, OnInit } from "@angular/core";
+export enum SelectionType {
+  single = "single",
+  multi = "multi",
+  multiClick = "multiClick",
+  cell = "cell",
+  checkbox = "checkbox",
+}
+@Component({
+  selector: "app-invoices",
+  templateUrl: "./invoices.component.html",
+  styleUrls: ["./invoices.component.scss"],
+})
+export class InvoicesComponent implements OnInit {
+  entries: number = 10;
+  selected: any[] = [];
+  temp = [];
+  activeRow: any;
+  rows: any = [
+    {
+      itemNo: "Tiger Nixon",
+      customer: "System Architect",
+      office: "Edinburgh",
+      age: "61",
+      start: "Rolex Air-King Stainless Steel Men's Watch 114200 Upgrade Charge (via Paypal)",
+      salary: "$320,800",
+    },
+    {
+      itemNo: "Garrett Winters",
+      customer: "Accountant",
+      office: "Tokyo",
+      age: "63",
+      start: "2011/07/25",
+      salary: "$170,750",
+    },
+    {
+      itemNo: "Ashton Cox",
+      customer: "Junior Technical Author",
+      office: "San Francisco",
+      age: "66",
+      start: "2009/01/12",
+      salary: "$86,000",
+    },
+    {
+      itemNo: "Cedric Kelly",
+      customer: "Senior Javascript Developer",
+      office: "Edinburgh",
+      age: "22",
+      start: "2012/03/29",
+      salary: "$433,060",
+    },
+    {
+      itemNo: "Airi Satou",
+      customer: "Accountant",
+      office: "Tokyo",
+      age: "33",
+      start: "2008/11/28",
+      salary: "$162,700",
+    },
+    {
+      itemNo: "Brielle Williamson",
+      customer: "Integration Specialist",
+      office: "New York",
+      age: "61",
+      start: "2012/12/02",
+      salary: "$372,000",
+    },
+    {
+      itemNo: "Herrod Chandler",
+      customer: "Sales Assistant",
+      office: "San Francisco",
+      age: "59",
+      start: "2012/08/06",
+      salary: "$137,500",
+    },
+    {
+      itemNo: "Rhona Davidson",
+      customer: "Integration Specialist",
+      office: "Tokyo",
+      age: "55",
+      start: "2010/10/14",
+      salary: "$327,900",
+    },
+    {
+      itemNo: "Colleen Hurst",
+      customer: "Javascript Developer",
+      office: "San Francisco",
+      age: "39",
+      start: "2009/09/15",
+      salary: "$205,500",
+    },
+    {
+      itemNo: "Sonya Frost",
+      customer: "Software Engineer",
+      office: "Edinburgh",
+      age: "23",
+      start: "2008/12/13",
+      salary: "$103,600",
+    },
+    {
+      itemNo: "Jena Gaines",
+      customer: "Office Manager",
+      office: "London",
+      age: "30",
+      start: "2008/12/19",
+      salary: "$90,560",
+    },
+    {
+      itemNo: "Quinn Flynn",
+      customer: "Support Lead",
+      office: "Edinburgh",
+      age: "22",
+      start: "2013/03/03",
+      salary: "$342,000",
+    },
+    {
+      itemNo: "Charde Marshall",
+      customer: "Regional Director",
+      office: "San Francisco",
+      age: "36",
+      start: "2008/10/16",
+      salary: "$470,600",
+    },
+    {
+      itemNo: "Haley Kennedy",
+      customer: "Senior Marketing Designer",
+      office: "London",
+      age: "43",
+      start: "2012/12/18",
+      salary: "$313,500",
+    },
+    {
+      itemNo: "Tatyana Fitzpatrick",
+      customer: "Regional Director",
+      office: "London",
+      age: "19",
+      start: "2010/03/17",
+      salary: "$385,750",
+    },
+    {
+      itemNo: "Michael Silva",
+      customer: "Marketing Designer",
+      office: "London",
+      age: "66",
+      start: "2012/11/27",
+      salary: "$198,500",
+    },
+    {
+      itemNo: "Paul Byrd",
+      customer: "Chief Financial Officer (CFO)",
+      office: "New York",
+      age: "64",
+      start: "2010/06/09",
+      salary: "$725,000",
+    },
+    {
+      itemNo: "Gloria Little",
+      customer: "Systems Administrator",
+      office: "New York",
+      age: "59",
+      start: "2009/04/10",
+      salary: "$237,500",
+    },
+    {
+      itemNo: "Bradley Greer",
+      customer: "Software Engineer",
+      office: "London",
+      age: "41",
+      start: "2012/10/13",
+      salary: "$132,000",
+    },
+    {
+      itemNo: "Dai Rios",
+      customer: "Personnel Lead",
+      office: "Edinburgh",
+      age: "35",
+      start: "2012/09/26",
+      salary: "$217,500",
+    },
+    {
+      itemNo: "Jenette Caldwell",
+      customer: "Development Lead",
+      office: "New York",
+      age: "30",
+      start: "2011/09/03",
+      salary: "$345,000",
+    },
+    {
+      itemNo: "Yuri Berry",
+      customer: "Chief Marketing Officer (CMO)",
+      office: "New York",
+      age: "40",
+      start: "2009/06/25",
+      salary: "$675,000",
+    },
+    {
+      itemNo: "Caesar Vance",
+      customer: "Pre-Sales Support",
+      office: "New York",
+      age: "21",
+      start: "2011/12/12",
+      salary: "$106,450",
+    },
+    {
+      itemNo: "Doris Wilder",
+      customer: "Sales Assistant",
+      office: "Sidney",
+      age: "23",
+      start: "2010/09/20",
+      salary: "$85,600",
+    },
+    {
+      itemNo: "Angelica Ramos",
+      customer: "Chief Executive Officer (CEO)",
+      office: "London",
+      age: "47",
+      start: "2009/10/09",
+      salary: "$1,200,000",
+    },
+    {
+      itemNo: "Gavin Joyce",
+      customer: "Developer",
+      office: "Edinburgh",
+      age: "42",
+      start: "2010/12/22",
+      salary: "$92,575",
+    },
+    {
+      itemNo: "Jennifer Chang",
+      customer: "Regional Director",
+      office: "Singapore",
+      age: "28",
+      start: "2010/11/14",
+      salary: "$357,650",
+    },
+    {
+      itemNo: "Brenden Wagner",
+      customer: "Software Engineer",
+      office: "San Francisco",
+      age: "28",
+      start: "2011/06/07",
+      salary: "$206,850",
+    },
+    {
+      itemNo: "Fiona Green",
+      customer: "Chief Operating Officer (COO)",
+      office: "San Francisco",
+      age: "48",
+      start: "2010/03/11",
+      salary: "$850,000",
+    },
+    {
+      itemNo: "Shou Itou",
+      customer: "Regional Marketing",
+      office: "Tokyo",
+      age: "20",
+      start: "2011/08/14",
+      salary: "$163,000",
+    },
+    {
+      itemNo: "Michelle House",
+      customer: "Integration Specialist",
+      office: "Sidney",
+      age: "37",
+      start: "2011/06/02",
+      salary: "$95,400",
+    },
+    {
+      itemNo: "Suki Burks",
+      customer: "Developer",
+      office: "London",
+      age: "53",
+      start: "2009/10/22",
+      salary: "$114,500",
+    },
+    {
+      itemNo: "Prescott Bartlett",
+      customer: "Technical Author",
+      office: "London",
+      age: "27",
+      start: "2011/05/07",
+      salary: "$145,000",
+    },
+    {
+      itemNo: "Gavin Cortez",
+      customer: "Team Leader",
+      office: "San Francisco",
+      age: "22",
+      start: "2008/10/26",
+      salary: "$235,500",
+    },
+    {
+      itemNo: "Martena Mccray",
+      customer: "Post-Sales support",
+      office: "Edinburgh",
+      age: "46",
+      start: "2011/03/09",
+      salary: "$324,050",
+    },
+    {
+      itemNo: "Unity Butler",
+      customer: "Marketing Designer",
+      office: "San Francisco",
+      age: "47",
+      start: "2009/12/09",
+      salary: "$85,675",
+    },
+    {
+      itemNo: "Howard Hatfield",
+      customer: "Office Manager",
+      office: "San Francisco",
+      age: "51",
+      start: "2008/12/16",
+      salary: "$164,500",
+    },
+    {
+      itemNo: "Hope Fuentes",
+      customer: "Secretary",
+      office: "San Francisco",
+      age: "41",
+      start: "2010/02/12",
+      salary: "$109,850",
+    },
+    {
+      itemNo: "Vivian Harrell",
+      customer: "Financial Controller",
+      office: "San Francisco",
+      age: "62",
+      start: "2009/02/14",
+      salary: "$452,500",
+    },
+    {
+      itemNo: "Timothy Mooney",
+      customer: "Office Manager",
+      office: "London",
+      age: "37",
+      start: "2008/12/11",
+      salary: "$136,200",
+    },
+    {
+      itemNo: "Jackson Bradshaw",
+      customer: "Director",
+      office: "New York",
+      age: "65",
+      start: "2008/09/26",
+      salary: "$645,750",
+    },
+    {
+      itemNo: "Olivia Liang",
+      customer: "Support Engineer",
+      office: "Singapore",
+      age: "64",
+      start: "2011/02/03",
+      salary: "$234,500",
+    },
+    {
+      itemNo: "Bruno Nash",
+      customer: "Software Engineer",
+      office: "London",
+      age: "38",
+      start: "2011/05/03",
+      salary: "$163,500",
+    },
+    {
+      itemNo: "Sakura Yamamoto",
+      customer: "Support Engineer",
+      office: "Tokyo",
+      age: "37",
+      start: "2009/08/19",
+      salary: "$139,575",
+    },
+    {
+      itemNo: "Thor Walton",
+      customer: "Developer",
+      office: "New York",
+      age: "61",
+      start: "2013/08/11",
+      salary: "$98,540",
+    },
+    {
+      itemNo: "Finn Camacho",
+      customer: "Support Engineer",
+      office: "San Francisco",
+      age: "47",
+      start: "2009/07/07",
+      salary: "$87,500",
+    },
+    {
+      itemNo: "Serge Baldwin",
+      customer: "Data Coordinator",
+      office: "Singapore",
+      age: "64",
+      start: "2012/04/09",
+      salary: "$138,575",
+    },
+    {
+      itemNo: "Zenaida Frank",
+      customer: "Software Engineer",
+      office: "New York",
+      age: "63",
+      start: "2010/01/04",
+      salary: "$125,250",
+    },
+    {
+      itemNo: "Zorita Serrano",
+      customer: "Software Engineer",
+      office: "San Francisco",
+      age: "56",
+      start: "2012/06/01",
+      salary: "$115,000",
+    },
+    {
+      itemNo: "Jennifer Acosta",
+      customer: "Junior Javascript Developer",
+      office: "Edinburgh",
+      age: "43",
+      start: "2013/02/01",
+      salary: "$75,650",
+    },
+    {
+      itemNo: "Cara Stevens",
+      customer: "Sales Assistant",
+      office: "New York",
+      age: "46",
+      start: "2011/12/06",
+      salary: "$145,600",
+    },
+    {
+      itemNo: "Hermione Butler",
+      customer: "Regional Director",
+      office: "London",
+      age: "47",
+      start: "2011/03/21",
+      salary: "$356,250",
+    },
+    {
+      itemNo: "Lael Greer",
+      customer: "Systems Administrator",
+      office: "London",
+      age: "21",
+      start: "2009/02/27",
+      salary: "$103,500",
+    },
+    {
+      itemNo: "Jonas Alexander",
+      customer: "Developer",
+      office: "San Francisco",
+      age: "30",
+      start: "2010/07/14",
+      salary: "$86,500",
+    },
+    {
+      itemNo: "Shad Decker",
+      customer: "Regional Director",
+      office: "Edinburgh",
+      age: "51",
+      start: "2008/11/13",
+      salary: "$183,000",
+    },
+    {
+      itemNo: "Michael Bruce",
+      customer: "Javascript Developer",
+      office: "Singapore",
+      age: "29",
+      start: "2011/06/27",
+      salary: "$183,000",
+    },
+    {
+      itemNo: "Donna Snider",
+      customer: "Customer Support",
+      office: "New York",
+      age: "27",
+      start: "2011/01/25",
+      salary: "$112,000",
+    },
+  ];
+  SelectionType = SelectionType;
+
+  constructor() {
+    this.temp = this.rows.map((prop, key) => {
+      return {
+        ...prop,
+        id: key,
+      };
+    });
+  }
+  entriesChange($event) {
+    this.entries = $event.target.value;
+  }
+  filterTable($event) {
+    let val = $event.target.value;
+    this.temp = this.rows.filter(function (d) {
+      for (var key in d) {
+        if (d[key].toLowerCase().indexOf(val) !== -1) {
+          return true;
+        }
+      }
+      return false;
+    });
+  }
+  onSelect({ selected }) {
+    this.selected.splice(0, this.selected.length);
+    this.selected.push(...selected);
+  }
+  onActivate(event) {
+    this.activeRow = event.row;
+  }
+
+  ngOnInit() {}
+}

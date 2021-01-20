@@ -6,6 +6,13 @@ import { BrowserModule } from "@angular/platform-browser";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { AuthLayoutComponent } from "./layouts/auth-layout/auth-layout.component";
 import { PresentationComponent } from "./pages/presentation/presentation.component";
+import {SigninComponent } from "./pages/signin/signin.component";
+import { ProductsComponent } from "./pages/products/products.component";
+import { CustomersComponent } from "./pages/customers/customers.component";
+import { InvoicesComponent } from "./pages/invoices/invoices.component";
+import { ReturnsComponent } from "./pages/returns/returns.component";
+import { RepairsComponent } from "./pages/repairs/repairs.component";
+import { LogsComponent } from "./pages/logs/logs.component";
 
 const routes: Routes = [
   {
@@ -16,6 +23,10 @@ const routes: Routes = [
   {
     path: "presentation",
     component: PresentationComponent
+  },
+  {
+    path: "login",
+    component: SigninComponent
   },
   {
     path: "",
@@ -56,7 +67,32 @@ const routes: Routes = [
       {
         path: "examples",
         loadChildren: "./pages/examples/examples.module#ExamplesModule"
+      },
+      {
+        path: "products",
+        component: ProductsComponent
+      },
+      {
+        path: "customers",
+        component: CustomersComponent
+      },
+      {
+        path: "invoices",
+        component: InvoicesComponent
+      },
+      {
+        path: "returns",
+        component: ReturnsComponent
+      },
+      {
+        path: "repairs",
+        component: RepairsComponent
+      },
+      {
+        path: "logs",
+        component: LogsComponent
       }
+
     ]
   },
   {

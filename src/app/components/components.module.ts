@@ -16,6 +16,7 @@ import { RouterModule } from "@angular/router";
 import { CollapseModule } from "ngx-bootstrap/collapse";
 import { DxVectorMapModule } from "devextreme-angular";
 import { BsDropdownModule } from "ngx-bootstrap";
+import { SigninComponent } from './signin/signin.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { BsDropdownModule } from "ngx-bootstrap";
     FooterComponent,
     VectorMapComponent1,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    SigninComponent
   ],
   exports: [
     FooterComponent,

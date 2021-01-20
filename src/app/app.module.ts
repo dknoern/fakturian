@@ -15,6 +15,17 @@ import { PresentationModule } from "./pages/presentation/presentation.module";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { ComponentsModule } from "./components/components.module";
+import { SigninComponent } from './pages/signin/signin.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ProductsComponent } from './pages/products/products.component';
+
+import { NgxPrintModule } from "ngx-print";
+import { NgxDatatableModule } from "@swimlane/ngx-datatable";
+import { CustomersComponent } from './pages/customers/customers.component';
+import { InvoicesComponent } from './pages/invoices/invoices.component';
+import { ReturnsComponent } from './pages/returns/returns.component';
+import { RepairsComponent } from './pages/repairs/repairs.component';
+import { LogsComponent } from './pages/logs/logs.component';
 
 @NgModule({
   imports: [
@@ -28,9 +39,12 @@ import { ComponentsModule } from "./components/components.module";
     ToastrModule.forRoot(),
     CollapseModule.forRoot(),
     TagInputModule,
-    PresentationModule
+    PresentationModule,
+    FontAwesomeModule,
+    NgxDatatableModule,
+    NgxPrintModule
   ],
-  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
+  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, SigninComponent, ProductsComponent, CustomersComponent, InvoicesComponent, ReturnsComponent, RepairsComponent, LogsComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -31,6 +31,64 @@ export interface ChildrenItems2 {
 }
 //Menu Items
 export const ROUTES: RouteInfo[] = [
+
+  {
+    path: "/products",
+    title: "Products",
+    type: "link",
+    icontype: "fa fa-shopping-cart"
+  },
+  {
+    path: "/customers",
+    title: "Customers",
+    type: "link",
+    icontype: "fa fa-users"
+  },
+
+  {
+    path: "/invoices",
+    title: "Invoices",
+    type: "link",
+    icontype: "fa fa-file-invoice"
+  },
+  {
+    path: "/returns",
+    title: "Returns",
+    type: "link",
+    icontype: "fa fa-retweet"
+  },
+  {
+    path: "/repairs",
+    title: "Repairs",
+    type: "link",
+    icontype: "fa fa-wrench"
+  },
+  {
+    path: "/logs",
+    title: "Log",
+    type: "link",
+    icontype: "fa fa-edit"
+  },
+  {
+    path: "/reports",
+    title: "Reports",
+    type: "sub",
+    icontype: "fa fa-chart-bar",
+    isCollapsed: true,
+    children: [
+      { path: "report1", title: "Outstanding repairs", type: "link" },
+      { path: "report2", title: "Items on memo", type: "link" },
+      { path: "report3", title: "Daily sales", type: "link" },
+      { path: "report4", title: "Returns summary", type: "link" },
+      { path: "report5", title: "Partnership items", type: "link" },
+      { path: "report6", title: "Consignment items", type: "link" },
+      { path: "report7", title: "Monthly sales", type: "link" },
+      { path: "report8", title: "Out at show", type: "link" },
+      { path: "report9", title: "Show report", type: "link" },
+      { path: "report10", title: "In Stock", type: "link" },
+      { path: "report11", title: "Customers", type: "link" }
+    ]
+  },
   {
     path: "/dashboards",
     title: "Dashboards",
