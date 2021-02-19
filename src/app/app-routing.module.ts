@@ -14,10 +14,12 @@ import { ReturnsComponent } from "./pages/returns/returns.component";
 import { RepairsComponent } from "./pages/repairs/repairs.component";
 import { LogsComponent } from "./pages/logs/logs.component";
 
+import { AuthGuard } from './guards/auth.guard';
+
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "dashboards/dashboard",
+    redirectTo: "repairs",
     pathMatch: "full"
   },
   {
@@ -70,19 +72,19 @@ const routes: Routes = [
       },
       {
         path: "products",
-        component: ProductsComponent
+        component: ProductsComponent, canActivate: [AuthGuard]
       },
       {
         path: "customers",
-        component: CustomersComponent
+        component: CustomersComponent, canActivate: [AuthGuard]
       },
       {
         path: "invoices",
-        component: InvoicesComponent
+        component: InvoicesComponent, canActivate: [AuthGuard]
       },
       {
         path: "returns",
-        component: ReturnsComponent
+        component: ReturnsComponent, canActivate: [AuthGuard]
       },
       {
         path: "repairs",
@@ -90,7 +92,7 @@ const routes: Routes = [
       },
       {
         path: "logs",
-        component: LogsComponent
+        component: LogsComponent, canActivate: [AuthGuard]
       }
 
     ]

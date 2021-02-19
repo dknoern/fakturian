@@ -9,24 +9,44 @@ declare var $: any;
 })
 export class RepairsComponent implements OnInit {
   
+ token = null;
   constructor(
     public auth: AuthService,
   ) {
-
-    console.log("getting token");
-    const token =  auth.getTokenSilently$()
-
-    //console.log("token = " + JSON.stringify(token));
-    
 
   }
 
 
   ngOnInit() {
 
-    $(document).ready(function() {
-          $('#example').DataTable();
+ this.auth.getAccessTokenSilently().subscribe(
+      res => {
+        console.log("token is " + res);
+        alert("token is " + res);
+        this.token = res;
+
+
+/*
+        $(document).ready(function() {
+          $('#example').DataTable(
+            {
+              "processing": true,
+              "serverSide": true,
+              "ordering": false,
+              "ajax": {
+                  url: "/api/customers",
+                  headers: {
+                      "Authorization": "Bearer bro"
+                  }
+              }
+            }
+          );
       } );
+      */
   
+      }
+    );
+
+
   }
 }
