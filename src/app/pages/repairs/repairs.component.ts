@@ -19,7 +19,7 @@ export class RepairsComponent implements OnInit {
 
   ngOnInit() {
 
- this.auth.getAccessTokenSilently().subscribe(
+    this.auth.getTokenSilently$().subscribe(
       res => {
         console.log("token is " + res);
         alert("token is " + res);
